@@ -10,13 +10,16 @@ This demo is super simple, in that it only pass is an object to the queue worker
 
 1. Start up 20 simulated servers
 `
- open a terminal - start 20 instances
- >  pm2 start pm2.json
- >  pm2 logs 
+ open a terminal - start 20 instances 
+ 
+ >  pm2 start pm2.json 
+ 
+ >  pm2 logs  
 
-We could use PM2 scaling; however, we are on cheap single core AWS instances. We can simulate this with pm2
+We could use PM2 scaling; however, we are on cheap single core AWS instances. We can simulate this with pm2 
 
 `
+
 2. Start the server
 `
   open 1 terminal and start the express server. This will be used to submit the job

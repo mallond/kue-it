@@ -3,10 +3,11 @@ const express = require('express');
 const kue = require('kue');
 const uuidv1 = require('uuid/v1');
 
+
 const app = express();
 const queue = kue.createQueue();
 
-let jobStack = 0;
+let jobStack = [];
 
 const createJob = (jobName, sequence)=>{
 
@@ -22,9 +23,19 @@ const createJob = (jobName, sequence)=>{
           console.log('error');
           return;
         }
+        jobStack.push(job);
+
         job.on('complete', (result) => {
           // Job index removed from the stack
-          jobStack--;
+          var index = jobStack.findIndex((i) => {
+            //console.log('i:',i.data.title, result.title)
+            return i.data.title === result.title
+          }); // 0
+          // Remove Job from jobStack
+          if (index>0) {
+           jobStack.splice(index,1);
+          }
+
         });
         job.on('failed', () => {
           console.log('error');
@@ -41,19 +52,21 @@ app.get('/create', (req, res) => {
 
   for (let i=0; i<transactions; i++) {
     createJob(req.query.jobName, i);
-    jobStack++;
   }
 
   res.send(`Job Created and Submitted to stack ${jobStack.length} Transactions: ${req.query.jobName}`);
-
 
 });
 
 // Compact jobStack
 setInterval(()=>{
-  if (jobStack>0) {
-    console.log('Objects on the JobStack:',jobStack);
+
+  process.stdout.write('\033c');
+  const used = process.memoryUsage();
+  for (let key in used) {
+    console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
   }
-},1000);
+
+},5000);
 
 app.listen(3001, () => console.log('Example app listening on port 3001!'));

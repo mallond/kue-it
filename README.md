@@ -8,10 +8,13 @@ I want to See 1 Million Objects run and Scale!
 
 This demo is super simple, in that it only pass is an object to the queue worker. 
 
-1. Start up 5 simulated servers
+1. Start up 20 simulated servers
 `
- open 5 terminals and run 5 instances of the worker
- > node workerInstance
+ open a terminal - start 20 instances
+ >  pm2 start pm2.json
+ >  pm2 logs 
+
+We could use PM2 scaling; however, we are on cheap single core AWS instances. We can simulate this with pm2
 
 `
 2. Start the server

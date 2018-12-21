@@ -1,0 +1,84 @@
+{
+  "apps": [
+    {
+      "name": "instance 1",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 2",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 3",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 4",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 5",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 6",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 7",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 8",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 9",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 10",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 11",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 12",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 13",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 14",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 15",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 16",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 17",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 18",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 19",
+      "script": "./workerInstance.js"
+    },
+    {
+      "name": "instance 20",
+      "script": "./workerInstance.js"
+    }
+  ]
+}

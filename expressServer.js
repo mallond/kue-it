@@ -7,7 +7,7 @@ const _ = require('underscore');
 const app = express();
 const queue = kue.createQueue();
 
-let jobStack = [];
+let jobStack = 0;
 
 const createJob = (jobName, sequence)=>{
 
@@ -25,18 +25,12 @@ const createJob = (jobName, sequence)=>{
         }
         job.on('complete', (result) => {
           // Job index removed from the stack
-          jobStack = _.reject(jobStack, (d)=>{
-            return d.index === result.title;
-          });
+          jobStack--;
         });
         job.on('failed', () => {
           console.log('error');
         });
       });
-
-  // Job index put on the stack
-  const jobIndex = {index: title, job: job};
-  jobStack.push(jobIndex);
 
 };
 
@@ -48,6 +42,7 @@ app.get('/create', (req, res) => {
 
   for (let i=0; i<transactions; i++) {
     createJob(req.query.jobName, i);
+    jobStack++;
   }
 
   res.send(`Job Created and Submitted to stack ${jobStack.length} Transactions: ${req.query.jobName}`);
@@ -55,10 +50,10 @@ app.get('/create', (req, res) => {
 
 });
 
-// Dump the JobStack length
+// Compact jobStack
 setInterval(()=>{
-  if (jobStack.length>0) {
-    console.log('Objects on the JobStack:',jobStack.length)
+  if (jobStack>0) {
+    console.log('Objects on the JobStack:',jobStack);
   }
 },1000);
 

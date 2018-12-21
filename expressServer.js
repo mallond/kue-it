@@ -2,7 +2,6 @@
 const express = require('express');
 const kue = require('kue');
 const uuidv1 = require('uuid/v1');
-const _ = require('underscore');
 
 const app = express();
 const queue = kue.createQueue();

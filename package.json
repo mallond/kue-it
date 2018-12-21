@@ -4,6 +4,7 @@
   "description": "Simple see how kue can handle a million transactions",
   "main": "doRunUseCase1.js",
   "dependencies": {
+    "ioredis": "^4.3.0",
     "kue": "^0.11.6",
     "moment": "^2.23.0",
     "uuid": "^3.3.2"
@@ -18,7 +19,6 @@
   },
   "keywords": [
     "kue.js",
-    "redis",
     "distributed",
     "queue"
   ],

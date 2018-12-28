@@ -32,18 +32,15 @@ We could use PM2 scaling; however, we are on cheap single core AWS instances. We
 The result on my Mac Pro was 100,000 transactions in 45 seconds
 
 
-### Use Case 1000000 Pass through objects using Kue.js
-
->> Epic fail out of memory error 
->> Sorry game over
 
 
-### Use Case 1000000 Pass through objects using piping and streams
+### Use Case 100000 JSON objects using piping and streams
 
-1. Write 1 million transactions took 15 seconds
-2. Consumed 1 million transactions to 
 
->> Story to be continued
+
+
+
+
 
 
 

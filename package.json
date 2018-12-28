@@ -7,7 +7,9 @@
     "ioredis": "^4.3.0",
     "kue": "^0.11.6",
     "moment": "^2.23.0",
+    "redis": "^2.8.0",
     "redis-stream": "^0.1.0",
+    "redis-streams-aggregator": "^1.0.8",
     "uuid": "^3.3.2"
   },
   "devDependencies": {},

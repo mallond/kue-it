@@ -3,22 +3,39 @@
 const redis = require('redis');
 const client = redis.createClient();
 
-const {promisify} = require('util');
-const getAsync = promisify(client.get).bind(client);
+let counter = 0;
+
+const waitForPushx = (message)=>{
+  return new Promise((resolve, reject)=>{
+
+    client.brpop(['onemillion',0], function (listName, item) {
+      // do stuff
+      const data = JSON.parse(item[1]);
+      resolve(data.increment)
+      counter++;
+    })
 
 
-function waitForPush () {
-  client.brpop(['onemillion',0], function (listName, item) {
-    // do stuff
-    const data = JSON.parse(item[1])
-    if (data.increment % 1000 === 0) {
-      console.log(`Increment: ${data.increment}`)
-    }
-
-    //console.log(`item: ${item[1].data}`);
-    return waitForPush();
+  }).then((message)=>{
+    //console.log(`Increment: ${message}`)
+    waitForPushx();
   })
 };
 
-waitForPush();
+waitForPushx();
+
+
+
+
+setInterval(()=>{
+
+  const used = process.memoryUsage();
+  for (let key in used) {
+    console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
+  }
+  console.log('job count ', counter)
+
+
+},1000);
+
 

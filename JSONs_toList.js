@@ -236,6 +236,15 @@ const testData = [
   }
 ];
 
+const printMem = ()=>{
+  const used = process.memoryUsage();
+  for (let key in used) {
+    console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
+  }
+  console.log('job count ', counter)
+  forceGC();
+};
+
 // Stringify to be stored on the list
 const testDataString = JSON.stringify(testData, 2, null);
 
@@ -245,19 +254,32 @@ const startDate = new Date();
 
 let lpush = client.stream('lpush', 'onemillion');
 
-const processThisMany = 500000;
+const processThisMany = 5000;
 let counter = 0;
 console.log(`Loading ${processThisMany} ...`);
-for (var i = 0; i < processThisMany; i++) {
-  counter++;
-  lpush.write(`{"increment":"${i}", "data":${testDataString}}`);
-  // Clear the Buffer after 100K and Data is this size
-  if (i % 1000===0) {
-     lpush.end();
-     lpush = client.stream('lpush', 'onemillion');
-     forceGC();
-  }
+
+
+// Load the List super Fast
+let processList = [];
+let inc = 0;
+for (let i=0; i<500000; i++ ) {
+  processList.push(testDataString);
 }
+
+// Asynchronously process
+processList.forEach((item)=>{
+  counter++;
+  lpush.write(`{"increment":"${inc++}", "data":${item}}`);
+  // Clear the Buffer after 100K and Data is this size
+  if (inc % 1000===0) {
+    lpush.end();
+    lpush = client.stream('lpush', 'onemillion');
+    forceGC();
+    printMem();
+  };
+})
+
+processList=null;
 lpush.end();
 
 
@@ -277,15 +299,12 @@ process.on('exit', function (){
 });
 
 
+
 setInterval(()=>{
 
-  const used = process.memoryUsage();
-  for (let key in used) {
-    console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
-  }
-  console.log('job count ', counter)
+  printMem();
+  forceGC();
 
-
-},1000);
+},3000);
 
 

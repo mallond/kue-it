@@ -34,7 +34,7 @@ The result on my Mac Pro was 100,000 transactions in 45 seconds
 
 
 
-### Use Case 1,000,000 JSON objects using piping and streams
+### Use Case 1,000,000 JSON objects using streams
 
 >> A medium complex payload processed a million times. Which intails loading 1 million into a Redis List and processing these with five workers. 
 

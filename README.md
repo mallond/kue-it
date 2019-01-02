@@ -49,7 +49,7 @@ The result on my Mac Pro was 100,000 transactions in 45 seconds
 
 ```
 
-2. Load 1,000,000 Json objects X5 
+2. Load 1,000,000 Json objects 
 
 ```
 500,000

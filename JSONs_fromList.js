@@ -5,7 +5,8 @@ const client = redis.createClient();
 
 let counter = 0;
 
-const waitForPushx = (message)=>{
+// BRPOP Block on Pop - keep promise chain alive
+const waitForPush = (message)=>{
   return new Promise((resolve, reject)=>{
 
     client.brpop(['onemillion',0], function (listName, item) {
@@ -15,16 +16,13 @@ const waitForPushx = (message)=>{
       counter++;
     })
 
-
   }).then((message)=>{
     //console.log(`Increment: ${message}`)
-    waitForPushx();
+    waitForPush();
   })
 };
 
-waitForPushx();
-
-
+waitForPush();
 
 
 setInterval(()=>{
@@ -34,7 +32,6 @@ setInterval(()=>{
     console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
   }
   console.log('job count ', counter)
-
 
 },1000);
 

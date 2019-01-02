@@ -254,34 +254,46 @@ const startDate = new Date();
 
 let lpush = client.stream('lpush', 'onemillion');
 
-const processThisMany = 5000;
+const processThisMany = 100000;
 let counter = 0;
-console.log(`Loading ${processThisMany} ...`);
+
 
 
 // Load the List super Fast
 let processList = [];
 let inc = 0;
-for (let i=0; i<500000; i++ ) {
+for (let i=0; i<processThisMany; i++ ) {
   processList.push(testDataString);
 }
 
-// Asynchronously process
-processList.forEach((item)=>{
-  counter++;
-  lpush.write(`{"increment":"${inc++}", "data":${item}}`);
-  // Clear the Buffer after 100K and Data is this size
-  if (inc % 1000===0) {
-    lpush.end();
-    lpush = client.stream('lpush', 'onemillion');
-    forceGC();
-    printMem();
-  };
-})
+const doIt = (processList)=>{
+  console.log(`Loading ${processThisMany} ...`);
+  // Asynchronously process the loaded list
+  processList.forEach((item)=>{
+    counter++;
+    lpush.write(`{"increment":"${inc++}", "data":${item}}`);
+    // Clear the Buffer after 100K and Data is this size
+    if (inc % 1000===0) {
+      lpush.end();
+      lpush = client.stream('lpush', 'onemillion');
+      forceGC();
+    }
+  });
+
+
+};
+
+// You need to Check in groups; otherwise REDIS will hang
+doIt(processList);
+doIt(processList);
+doIt(processList);
+doIt(processList);
+doIt(processList);
+
+
 
 processList=null;
 lpush.end();
-
 
 function forceGC() {
   if (global.gc) {
@@ -295,16 +307,9 @@ process.on('exit', function (){
 
   console.log('Goodbye!');
   let endDate = new Date();
-  console.log(`Finish loading ${processThisMany} to Redis ${(endDate - startDate)/1000}s`);
+  console.log(`Finish loading JSON to Redis ${(endDate - startDate)/1000}s`);
 });
 
 
-
-setInterval(()=>{
-
-  printMem();
-  forceGC();
-
-},3000);
 
 

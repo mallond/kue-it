@@ -46,14 +46,23 @@ The result on my Mac Pro was 100,000 transactions in 45 seconds
 > node JSONs_fromList.js 
 > node JSONs_fromList.js 
 ``
-2. Load 100000 Json objects X5 
+2. Load 1,000,000 Json objects X5 
+
 ``
+500,000
+
 > node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
 > node --max-old-space-size=8192 --expose-gc JSONs_toList.js
 > node --max-old-space-size=8192 --expose-gc JSONs_toList.js
 > node --max-old-space-size=8192 --expose-gc JSONs_toList.js
 > node --max-old-space-size=8192 --expose-gc JSONs_toList.js
 
+Next 500,000
+> node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
+> node --max-old-space-size=8192 --expose-gc JSONs_toList.js
+> node --max-old-space-size=8192 --expose-gc JSONs_toList.js
+> node --max-old-space-size=8192 --expose-gc JSONs_toList.js
+> node --max-old-space-size=8192 --expose-gc JSONs_toList.js
 ``
 
 Note: I needed to Load 100000 at a time; otherwise when I did load 1 Million

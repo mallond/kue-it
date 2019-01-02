@@ -285,11 +285,6 @@ const doIt = (processList)=>{
 
 // You need to Check in groups; otherwise REDIS will hang
 doIt(processList);
-doIt(processList);
-doIt(processList);
-doIt(processList);
-doIt(processList);
-
 
 
 processList=null;

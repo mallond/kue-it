@@ -69,7 +69,7 @@ $ node --max-old-space-size=8192 --expose-gc JSONs_toList.js
 ```
 
 Note: I needed to Load 100000 at a time; otherwise when I did load 1 Million
-the system would crash - Chunking the process down seems to help. Seem on my laptop when Redis reached 500mb of memory the system would lock. 
+the system would crash - Chunking the process down seems to help. Seems that on my laptop when Redis reached 500mb of memory the system would lock. 
 
 >> Result: 1 Million JSONS Queued and processed in 1 minute 41 seconds.
 

@@ -4,7 +4,7 @@ A Distributed Queue Batch Job - POC
 ## Objective
 I want to See 1 Million Objects run and Scale!
 
-### Use Case 100000 Pass through objects
+### Use Case 1,000,000 Pass through objects using Kue - FAIL too slow (relative fail). I am wanting sub second pass-through 
 
 This demo is super simple, in that it only pass is an object to the queue worker. 
 

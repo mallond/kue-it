@@ -38,7 +38,7 @@ The result on my Mac Pro was 100,000 transactions in 1.43 seconds
 
 ### Use Case 1,000,000 JSON objects using streams
 
->> A medium complex payload processed a million times. Which intails loading 1 million into a Redis List and processing these with five workers. 
+>> A medium complex payload processed a million times. Which intails loading 1 million into a Redis List and processing these with twenty workers. 
 
 1. Start 20 instances  via pm2
 

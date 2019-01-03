@@ -40,14 +40,13 @@ The result on my Mac Pro was 100,000 transactions in 1.43 seconds
 
 >> A medium complex payload processed a million times. Which intails loading 1 million into a Redis List and processing these with five workers. 
 
-1. Start 5 instances of the below
+1. Start 20 instances  via pm2
 
 ```
-> node JSONs_fromList.js 
-> node JSONs_fromList.js 
-> node JSONs_fromList.js 
-> node JSONs_fromList.js 
-> node JSONs_fromList.js 
+
+
+> pm2 start pm2-20-fromList-instances.json
+
 
 ```
 

@@ -74,7 +74,7 @@ app.get('/create', (req, res) => {
   client.set(req.query.jobName,0);
 
   // Send job message back to user
-  res.send(`Job Created and Submitted to stack ${jobStack.length} Transactions: ${req.query.jobName}`);
+  res.send(`Job Created and Submitted to stack ${req.query.transactions} Transactions: ${req.query.jobName}`);
 
 });
 

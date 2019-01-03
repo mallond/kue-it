@@ -276,7 +276,7 @@ const doIt = (processList)=>{
     if (inc % 1000===0) {
       lpush.end();
       lpush = client.stream('lpush', 'onemillion');
-      forceGC();
+      //forceGC();
     }
   });
 
@@ -285,7 +285,6 @@ const doIt = (processList)=>{
 
 // You need to Check in groups; otherwise REDIS will hang
 doIt(processList);
-
 
 
 processList=null;

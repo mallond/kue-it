@@ -14,7 +14,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "oneMillion":"node JSONs_toList.js && node JSONs_toList.js && node JSONs_toList.js && node JSONs_toList.js && node JSONs_toList.js && node JSONs_toList.js && node JSONs_toList.js && node JSONs_toList.js && node JSONs_toList.js && node JSONs_toList.js"
   },
   "repository": {
     "type": "git",

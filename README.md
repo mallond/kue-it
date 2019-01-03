@@ -40,10 +40,9 @@ The result on my Mac Pro was 100,000 transactions in 1.43 seconds
 
 >> A medium complex payload processed a million times. Which intails loading 1 million into a Redis List and processing these with twenty workers. 
 
-1. Start 20 instances  via pm2
+1. Start 20 instances via pm2
 
 ```
-
 
 > pm2 start pm2-20-fromList-instances.json
 
@@ -53,26 +52,22 @@ The result on my Mac Pro was 100,000 transactions in 1.43 seconds
 2. Load 1,000,000 Json objects 
 
 ```
-500,000
+$ npm run oneMillion
 
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
+This basicaly chunks streams into 100 K writes x 10
 
-Next 500,000
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js  
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
-$ node --max-old-space-size=8192 --expose-gc JSONs_toList.js 
 ```
+>> Result: 1 Million JSONS Queued and processed in 1 minute 8 seconds.
 
-Note: I needed to Load 100000 at a time; otherwise when I did load 1 Million
+Problem: 
+I needed to Load 100000 at a time; otherwise when I did load 1 Million
 the system would crash - Chunking the process down seems to help. Seems that on my laptop when Redis reached 500mb of memory the system would lock. 
 
->> Result: 1 Million JSONS Queued and processed in 1 minute 41 seconds.
+Solution: 
+redis-cli enter this command $ config set maxmemory 4gb
+
+
+
 
 
 

@@ -14,7 +14,12 @@ const waitForPush = (message)=>{
       const data = JSON.parse(item[1]);
       resolve(data.increment)
       counter++;
+
     })
+
+    client.incr('oneMillionDoneDone', function(err, reply) {
+      console.log(err); // 11
+    });
 
   }).then((message)=>{
     //console.log(`Increment: ${message}`)

@@ -31,137 +31,34 @@
   }
 }
 
-.App-gauge {
-/* gauge */
-
-position: relative;
-width: 297.98px;
-height: 376.44px;
-
-}
 
 
-.App-gauge-bg {
-/* bg */
-
-position: absolute;
-left: 0%;
-right: 0%;
-top: 0%;
-bottom: 0%;
-
-background: #282C34;
-border: 1px solid #000000;
-box-sizing: border-box;
-}
-
-.App-gauge-metrics {
-/* metrics */
-position: absolute;
-width: 231px;
-height: 32px;
-left: 34px;
-top: 325px;
-}
-
-
-.App-gauge-runtime {
-/* Runtime */
-
-font-size: 12px;
-
-color: #FFFFFF;
-
-}
-
-.App-gauge-cpu {
-/* Memory CPU */
-
-
-font-size: 12px;
-
-color: #FFFFFF;
-
-}
-
-.App-gauge-chart {
-/* Chart */
-position: absolute;
-left: 20.78%;
-right: 20.78%;
-top: 29.9%;
-bottom: 23.83%;
-
-}
-
-
-.App-gauge-ellipse-full {
-/* Ellipse full */
-position: absolute;
-left: 20.78%;
-right: 20.78%;
-top: 29.9%;
-bottom: 23.83%;
-
-border: 20px solid #162750;
-}
-
-.App-gauge-ellipse-percentage {
-/* Ellipse percentage */
-position: absolute;
-left: 20.78%;
-right: 20.78%;
-top: 29.9%;
-bottom: 23.83%;
-border: 20px solid #67DAF9;
-}
-
-.App-gauge-percentage {
-  /* percentage */
-  position: absolute;
-  left: 35.71%;
-  right: 35.38%;
-  top: 48.97%;
-  bottom: 43.34%;
-  background: #FFFFFF;
-}
-
-
-.App-gauge-job-tittle {
-/* Job Title */
-position: absolute;
-left: 8.39%;
-right: 2.68%;
-top: 5.58%;
-bottom: 84.9%;
-}
-
-.App-gauge-job {
-  /* JOB: OneMillion */
-  font-size: 14px;
-  color: #FFFFFF;
-}
-
-.App-gauge-description {
-/* Prototype Job Run with Goal of 1 Million Transactions */
-
-font-size: 10px;
-color: #FFFFFF;
-}
 
 /* run */
 .App-gauge-run {
-    position: absolute;
+    position: relative;
     width: 48px;
     height: 68px;
     left: 33px;
-    top: 90px;
+    top: 33px;
     white-space: nowrap; /*Prevents Wrapping*/
 
     font-size: 14px;
     color: #FFFFFF;
 }
 
+
+.row {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+input[type='text'] {
+    background: #424855;
+    font-size: 14px;
+    color: #FFFFFF;
+}
 
 .App-iphone8 {
 
@@ -207,4 +104,10 @@ color: #FFFFFF;
     background: #313640;
 }
 
+.circle-progress {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 110px;
+}
 

@@ -44,7 +44,7 @@ app.get('/workers', (req, res) => {
   const workers = parseInt(req.query.workers); 
 
   // Create Workers aka Consumers
-  for (let index = 0; index < workers; index++) {
+  for (let index = 0; index <= workers; index++) {
     console.log('creating worker....')
     jobStack.push(new Worker(uuidv1()));
     console.log('length:', jobStack.length)
@@ -53,7 +53,8 @@ app.get('/workers', (req, res) => {
 });
 
 app.get('/initialize', (req, res) => {
-
+  
+  // http://localhost:3001/initialize?jobName=OneHundredThousand&transactions=100000&consumers=10
   jobStack = [];
 
   jobDescription.jobName = req.query.jobName;
@@ -79,7 +80,7 @@ app.get('/initialize', (req, res) => {
 
   console.log(`Initialize JobStack Count:${jobStack.length}`)
 
-  res.send(`Initialize Job: ${jobDescription.jobName} Transactions: ${jobDescription.transactionsRequested }`);
+  res.send(`Initialize Job: ${jobDescription.jobName} Transactions: ${jobDescription.transactionsRequested } Consumers: ${jobDescription.consumerCount}`);
 });
 
 // Compact jobStack

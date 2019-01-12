@@ -13,6 +13,11 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      percentage:0
+    };
+    const they = this;
     // Setup Default redis state
     console.log('Initializing Redis');
 
@@ -42,9 +47,19 @@ class App extends Component {
         })
         .then(function (response) {
           // handle success
-          if (response.data.doneDone === false) {
+
+          const percentValue = response.data.transactionsCompleted /response.data.transactionsRequested * 100;
+          they.setState({percentage:Math.round(percentValue)});
+
+          if (percentValue !== 100 && response.data.doneDone === false) {
            console.log(`done-done: ${JSON.stringify(response.data)}`);
           }
+         
+          
+
+            
+          
+          
         })
         .catch(function (error) {
           // handle error
@@ -53,10 +68,14 @@ class App extends Component {
         .then(function () {
           // always executed
         });
-      },1000)
+      },50)
   }
 
+  
+
   render() {
+   
+
     let percentage = 5;
     return (
       <div className="App">
@@ -77,7 +96,7 @@ class App extends Component {
                 <br/>
                 <br/>
                 <div>Object Target: 100000</div>
-                <div>Producer Count: 500</div>
+                <div>`Producer Count: ${this.state.producerCount}`</div>
                 <div>Consumer Count: 0</div>
               </div>
             </div>
@@ -85,8 +104,8 @@ class App extends Component {
               <div className="circle-progress">
                 <Label>Loading</Label>
                 <CircularProgressbar 
-                  percentage={percentage}
-                  text={`${percentage}%`}
+                  percentage={this.state.percentage}
+                  text={`${this.state.percentage}%`}
                 />
               </div>
             </div>

@@ -34,8 +34,14 @@ app.get('/jobStatus', (req, res) => {
     jobDescription.doneDone= (jobDescription.transactionsCompleted === jobDescription.transactionsRequested)?true:false;
     console.log(jobDescription.transactionsCompleted,jobDescription.transactionsRequested)
     jobDescription.consumerCount = jobStack.length;    
-    res.send(jobDescription);
   });
+  client.get("numberOfObjects", function(err, reply) {
+    // reply is null when the key is missing
+    console.log(typeof reply);
+    console.log(reply);   
+  });
+
+  res.send(jobDescription);
 })
 
 app.get('/workers', (req, res) => { 

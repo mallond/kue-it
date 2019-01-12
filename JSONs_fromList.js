@@ -15,7 +15,7 @@ const waitForPush = (message)=>{
       resolve(data.increment)
       counter++;
 
-    })
+    });
 
     client.incr('oneMillionDoneDone', function(err, reply) {
       console.log(err); // 11

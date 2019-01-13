@@ -70,13 +70,7 @@ class App extends Component {
           })
           .then(function (response) {
             const completedCount = response.data.transactionsCompleted;
-            //let percentValue = 0;
-            //if (completedCount>0 && !response.data.doneDone) {
-              const percentValue = response.data.transactionsCompleted / response.data.transactionsRequested * 100;
-            //}
-
-
-
+            const percentValue = response.data.transactionsCompleted / response.data.transactionsRequested * 100;
             // Caluclate Duration
             if (they.state.completedCount>0 && they.state.completedCount !== response.data.transactionsRequested) {
               const now = new Date();

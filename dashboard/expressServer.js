@@ -13,6 +13,9 @@ client.on("error", function (err) {
   console.log("Error " + err);
 });
 
+var port = process.argv.slice(2);
+console.log('myArgs: ', port);
+
 const beginDateTime = new Date();
 let transactionsRequested = null;
 let jobStack = [];
@@ -104,4 +107,5 @@ setInterval(() => {
 }, 300000);
 
 
-app.listen(3001, () => console.log('Example app listening on port 3001!'));
+
+app.listen(parseInt(port), () => console.log(`Redis Bridge listening on port ${port}!`));

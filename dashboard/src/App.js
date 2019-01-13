@@ -160,6 +160,9 @@ class App extends Component {
     const values = [];
     for (cnt; cnt<this.state.numberOfConsumers; cnt++) {
      values.push(aPixal(cnt))
+     if (cnt===431) {
+       break;
+     }
     }
     return values;
   })()}

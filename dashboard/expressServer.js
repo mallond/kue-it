@@ -7,6 +7,7 @@ const app = express();
 app.use(cors());
 const Worker = require('./redisWorker');
 
+
 const client = Redis.createClient();
 client.on("error", function (err) {
   console.log("Error " + err);
@@ -29,16 +30,16 @@ app.get('/jobStatus', (req, res) => {
 
   client.get("oneMillionDoneDone", function(err, reply) {
     // reply is null when the key is missing
-    console.log(typeof reply);
+    //console.log(typeof reply);
     jobDescription.transactionsCompleted = parseInt(reply);
     jobDescription.doneDone= (jobDescription.transactionsCompleted === jobDescription.transactionsRequested)?true:false;
-    console.log(jobDescription.transactionsCompleted,jobDescription.transactionsRequested)
+    //console.log(jobDescription.transactionsCompleted,jobDescription.transactionsRequested)
     jobDescription.consumerCount = jobStack.length;    
   });
   client.get("numberOfObjects", function(err, reply) {
     // reply is null when the key is missing
-    console.log(typeof reply);
-    console.log(reply);   
+    //console.log(typeof reply);
+    //console.log(reply);   
   });
 
   res.send(jobDescription);
@@ -84,6 +85,8 @@ app.get('/initialize', (req, res) => {
     console.log('length:', jobStack.length)
   }
 
+  //loadList();
+
   console.log(`Initialize JobStack Count:${jobStack.length}`)
 
   res.send(`Initialize Job: ${jobDescription.jobName} Transactions: ${jobDescription.transactionsRequested } Consumers: ${jobDescription.consumerCount}`);
@@ -96,7 +99,7 @@ setInterval(() => {
   //for (let key in used) {
   //   console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
   //  }
-  console.log(`Interval JobStack Count:${jobStack.length}`)
+  //console.log(`Interval JobStack Count:${jobStack.length}`)
 
 }, 300000);
 

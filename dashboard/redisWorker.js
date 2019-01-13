@@ -5,6 +5,7 @@ class Worker {
   constructor(id) {
     this.id = id;
     let counter = 0;
+    const they = this;
 
     console.log(`WorkerId:${this.id}`)
 
@@ -23,6 +24,8 @@ class Worker {
         client.incr('oneMillionDoneDone', function (err, reply) {
           if (err) {
             console.log(`oneMilllionDoneDone errors ${err}`); // 11
+          } else {
+            //console.log(they.id)
           }
         });
 

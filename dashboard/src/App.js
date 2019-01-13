@@ -4,19 +4,22 @@ import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './App.css';
 
-function Label() {
+const Label = ()=> {
   return <div style={{ marginTop: 10, marginBottom: 5 }}></div>;
 }
 
 const initalizeJob = (they) => {
+  
+  
   // Make a request for a user with a given ID
   //'http://localhost:3000/initialize?jobName=OneHundredThousand&transactions=100000'
   axios({
       method: 'get',
-      url: 'http://localhost:3001/initialize?jobName=OneHundredThousand&transactions=100000',
+      url: 'http://localhost:3001/initialize?jobName=OneHundredThousand&transactions=100000&consumers=44',
     })
     .then(function (response) {
       // handle success
+      they.setState({completedCount:0,targetCount:0, startTime:0,duration:0, status:'wait'});
       console.log(response);
     })
     .catch(function (error) {
@@ -34,8 +37,13 @@ class App extends Component {
     super(props);
 
     this.state = {
+      status:'wait',
+      startTime: 0,
       percentage:0,
-      producerCount:0
+      producerCount:0,
+      targetCount:0,
+      completedCount:0,
+      duration:0
     };
     const they = this;
     // Setup Default redis state
@@ -52,12 +60,26 @@ class App extends Component {
             // handle success
 
             const percentValue = response.data.transactionsCompleted / response.data.transactionsRequested * 100;
+            const completedCount = response.data.transactionsCompleted;
+            if (they.state.completedCount>0 && they.state.status==="wait") {
+              they.setState({startTime:new Date(),status:'running'})
+              
+            }
+            if (they.state.completedCount>0 && they.state.completedCount !== response.data.transactionsRequested) {
+              const now = new Date();
+              they.setState({duration:(now-they.state.startTime)/1000});
+            }
             they.setState({
-              percentage: Math.round(percentValue)
+              percentage: Math.round(percentValue),
+              completedCount: completedCount
             });
 
+            if (they.targetCount===0) {
+              they.setState({targetCount:response.data.transactionsRequested})
+            }
             if (percentValue !== 100 && response.data.doneDone === false) {
               //console.log(`done-done: ${JSON.stringify(response.data)}`);
+           
             }
 
           })
@@ -72,8 +94,8 @@ class App extends Component {
   }
 
   handleRunClick = ()=>{
-    console.log('tada')
-    initalizeJob();
+    const they = this;
+    initalizeJob(they);
   }
 
   render() {
@@ -97,8 +119,8 @@ class App extends Component {
                 <br/>
                 <br/>
                 <div>Object Target: 100000</div>
-                <div>{`Producer Count: ${this.state.producerCount}`}</div>
-                <div>Consumer Count: 0</div>
+                <div>{`Completed Count: ${this.state.completedCount}`}</div>
+                <div>{`Duration in Seconds: ${this.state.duration}`}</div>
               </div>
             </div>
             <div className="App-workarea" >

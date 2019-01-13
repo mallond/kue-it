@@ -15,10 +15,10 @@ class Worker {
 
         client.brpop(['onemillion', 0], function (listName, item) {
           // do stuff
-          const data = JSON.parse(item[1]);
+          const data = {};
+          const result = JSON.parse(item[1]);
           resolve(data.increment)
           counter++;
-
         });
 
         client.incr('oneMillionDoneDone', function (err, reply) {

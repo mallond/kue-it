@@ -45,7 +45,7 @@ class App extends Component {
       completedCount:0,
       duration:0,
       numberOfConsumers:10,
-      numberOfObjects:250000
+      numberOfObjects:100000
     };
 
     this.handleWorkerChange = this.handleWorkerChange.bind(this);
@@ -126,7 +126,7 @@ class App extends Component {
             <div className="App-input">
               <div className="App-gauge-run">
                 <div>
-                  <span className="row">Number of Objects:</span>&nbsp; <span ><input type="text" align="right" value={this.state.numberOfObjects} size="7" onChange={this.handleObjectsChange}/></span>
+                  <span className="row">Number of Objects:</span>&nbsp; <span ><input readOnly type="text" align="right" value={this.state.numberOfObjects} size="7" onChange={this.handleObjectsChange}/></span>
                 </div>
                 <div>
                   <span className="row">Number of Workers:</span> <span ><input type="text" align="right" value={this.state.numberOfConsumers} size="7" onChange={this.handleWorkerChange}/></span>

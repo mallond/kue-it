@@ -6,6 +6,7 @@
  */
 const Redis = require('redis-stream');
 let client = new Redis(6379, 'localhost');
+const csv = require('fast-csv');
 
 // Test Data from https://www.json-generator.com
 const testData = [
@@ -38,7 +39,7 @@ const printMem = ()=>{
   for (let key in used) {
     console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
   }
-  console.log('job count ', counter)
+
   forceGC();
 };
 
@@ -58,23 +59,38 @@ let counter = 0;
 // Load the List super Fast
   let processList = [];
   let inc = 0;
-  for (let i=0; i<processThisMany; i++ ) {
-    processList.push(testDataString);
-  }
+  //for (let i=0; i<processThisMany; i++ ) {
+  //  processList.push(testDataString);
+  //}
+
+  csv
+    .fromPath("./csv/01/100k.csv")
+    .on("data", function (data) {
+      const payload = {};
+      payload.fname = data[1];
+      payload.lname = data[2];
+      payload.email = data[3]
+      processList.push(JSON.stringify(payload));
+      //console.log(payload);
+    })
+    .on("end", function () {
+      console.log("done");
+      processList.forEach((item)=>{
+        counter++;
+        lpush.write(`{"increment":"${inc++}", "data":${item}}`);
+        // Clear the Buffer after 100K and Data is this size
+        if (inc % 1000===0) {
+          lpush.end();
+          lpush = client.stream('lpush', 'onemillion');
+          //forceGC();
+        }
+      });
+      lpush.end();
+    });
 
   console.log(`Loading ${processThisMany} ...`);
 
-  processList.forEach((item)=>{
-    counter++;
-    lpush.write(`{"increment":"${inc++}", "data":${item}}`);
-    // Clear the Buffer after 100K and Data is this size
-    if (inc % 1000===0) {
-      lpush.end();
-      lpush = client.stream('lpush', 'onemillion');
-      //forceGC();
-    }
-  });
-  lpush.end();
+
 };
 
 function forceGC() {
@@ -88,7 +104,6 @@ function forceGC() {
 process.on('exit', function (){
   console.log('Goodbye!');
   let endDate = new Date();
-  console.log(`Finish loading JSON to Redis ${(endDate - startDate)/1000}s`);
 });
 
 module.exports = doIt

@@ -7,6 +7,14 @@ import './App.css';
 const Label = ()=> {
   return <div style={{ marginTop: 10, marginBottom: 5 }}></div>;
 }
+const aPixal = (numberOfConsumers)=>{
+  //console.log(numberOfConsumers);
+  return <div class="pixel" style={{background:'#4ecd77'}}></div>;
+}
+
+const objects=[];
+objects.push({tada:1})
+objects.push({tada:2})
 
 const initalizeState = (they)=>{
   they.setState({
@@ -50,7 +58,7 @@ class App extends Component {
       targetCount:0,
       completedCount:0,
       duration:0,
-      numberOfConsumers:1000,
+      numberOfConsumers:300,
       numberOfObjects:100000
     };
 
@@ -123,6 +131,8 @@ class App extends Component {
     event.preventDefault();
   }
 
+ 
+
   render() {
     let percentage = 5;
     return (
@@ -143,266 +153,16 @@ class App extends Component {
                 <div>{`Completed Count: ${this.state.completedCount}`}</div>
                 <div>{`Duration in Seconds: ${this.state.duration}`}</div>
                 <br/>
+             
  <div class="canvas">
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
-  <div class="pixel"></div>
+  {(()=>{
+    let cnt=0;
+    const values = [];
+    for (cnt; cnt<this.state.numberOfConsumers; cnt++) {
+     values.push(aPixal(cnt))
+    }
+    return values;
+  })()}
 </div>
               </div>
             </div>

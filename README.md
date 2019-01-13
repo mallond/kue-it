@@ -39,6 +39,19 @@ david.mallon in
 
 ```
 
+## Wanky Ways
+1. cd dashboard
+2. pm2 start pm2-3-instances.json
+3. Go to your browser
+4. http://localhost:3001/initialize?jobName=OneHundredThousand&transactions=100000&consumers=200
+5. http://localhost:3002/initialize?jobName=OneHundredThousand&transactions=100000&consumers=200
+6. http://localhost:3003/initialize?jobName=OneHundredThousand&transactions=100000&consumers=200
+7. npm start
+
+
+This browser links will create 3 server instances with 200 workers each - Yea, a little overkill
+
+
 
 
 

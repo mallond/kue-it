@@ -8,10 +8,16 @@ const Label = ()=> {
   return <div style={{ marginTop: 10, marginBottom: 5 }}></div>;
 }
 
+const initalizeState = (they)=>{
+  they.setState({
+    completedCount:0,
+    targetCount:0, 
+    startTime:0,
+    duration:0, 
+    status:'wait',
+    percentage:0});
+}
 const initalizeJob = (they) => {
-  
-  
-  // Make a request for a user with a given ID
   //'http://localhost:3000/initialize?jobName=OneHundredThousand&transactions=100000'
   axios({
       method: 'get',
@@ -19,7 +25,7 @@ const initalizeJob = (they) => {
     })
     .then(function (response) {
       // handle success
-      they.setState({completedCount:0,targetCount:0, startTime:0,duration:0, status:'wait'});
+      initalizeState(they);
       console.log(response);
     })
     .catch(function (error) {
@@ -54,7 +60,7 @@ class App extends Component {
     const they = this;
     // Setup Default redis state
     console.log('Initializing Redis');
-    initalizeJob(they);
+    initalizeState(they);
 
       setInterval(() => {
         //console.log('Do polling here');
@@ -63,29 +69,32 @@ class App extends Component {
             url: 'http://localhost:3001/jobStatus',
           })
           .then(function (response) {
-            // handle success
-
-            const percentValue = response.data.transactionsCompleted / response.data.transactionsRequested * 100;
             const completedCount = response.data.transactionsCompleted;
-            if (they.state.completedCount>0 && they.state.status==="wait") {
-              they.setState({startTime:new Date(),status:'running'})
-              
-            }
+            //let percentValue = 0;
+            //if (completedCount>0 && !response.data.doneDone) {
+              const percentValue = response.data.transactionsCompleted / response.data.transactionsRequested * 100;
+            //}
+
+
+
+            // Caluclate Duration
             if (they.state.completedCount>0 && they.state.completedCount !== response.data.transactionsRequested) {
               const now = new Date();
               they.setState({duration:(now-they.state.startTime)/1000});
             }
+            // Percentage completed and Completed Count updates
             they.setState({
               percentage: Math.round(percentValue),
               completedCount: completedCount
             });
-
+            // Initialize Target Count
             if (they.targetCount===0) {
               they.setState({targetCount:response.data.transactionsRequested})
             }
-            if (percentValue !== 100 && response.data.doneDone === false) {
-              //console.log(`done-done: ${JSON.stringify(response.data)}`);
-           
+            // First Time a transaction is active start timer
+            // Not waiting anymore - Running
+            if (they.state.completedCount>0 && they.state.status==="wait") {
+              they.setState({startTime:new Date(),status:'running'})
             }
 
           })

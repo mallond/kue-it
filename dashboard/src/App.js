@@ -43,8 +43,14 @@ class App extends Component {
       producerCount:0,
       targetCount:0,
       completedCount:0,
-      duration:0
+      duration:0,
+      numberOfConsumers:10,
+      numberOfObjects:100000
     };
+
+    this.handleWorkerChange = this.handleWorkerChange.bind(this);
+    this.handleObjectsChange = this.handleObjectsChange.bind(this);
+
     const they = this;
     // Setup Default redis state
     console.log('Initializing Redis');
@@ -98,6 +104,18 @@ class App extends Component {
     initalizeJob(they);
   }
 
+  handleObjectsChange = (event)=>{
+    console.log('Objects have changed');
+    this.setState({numberOfObjects:event.target.value})
+    event.preventDefault();
+  }
+
+  handleWorkerChange = (event)=>{
+    console.log('workers have changed');
+    this.setState({numberOfConsumers:event.target.value})
+    event.preventDefault();
+  }
+
   render() {
     let percentage = 5;
     return (
@@ -108,10 +126,10 @@ class App extends Component {
             <div className="App-input">
               <div className="App-gauge-run">
                 <div>
-                  <span className="row">Number of Objects:</span>&nbsp; <span ><input type="text" align="right" value="100000" size="7"/></span>
+                  <span className="row">Number of Objects:</span>&nbsp; <span ><input type="text" align="right" value={this.state.numberOfObjects} size="7" onChange={this.handleObjectsChange}/></span>
                 </div>
                 <div>
-                  <span className="row">Number of Workers:</span> <span ><input type="text" align="right" value="10" size="7"/></span>
+                  <span className="row">Number of Workers:</span> <span ><input type="text" align="right" value={this.state.numberOfConsumers} size="7" onChange={this.handleWorkerChange}/></span>
                 </div>
                 <div>
                   <span><button onClick={this.handleRunClick}>Run</button></span>

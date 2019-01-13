@@ -51,7 +51,7 @@ david.mallon in
 7. npm start
 
 
-This browser links will create 3 server instances with 200 workers each - Yea, a little overkill
+This browser links will create 3 server instances with 1000 workers each - Yea, a little overkill
 
 
 

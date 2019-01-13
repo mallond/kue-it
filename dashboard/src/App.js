@@ -50,7 +50,7 @@ class App extends Component {
       targetCount:0,
       completedCount:0,
       duration:0,
-      numberOfConsumers:2,
+      numberOfConsumers:1000,
       numberOfObjects:100000
     };
 

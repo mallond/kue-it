@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "cors": "^2.8.5",
     "fast-csv": "^2.4.1",
+    "pixel-grid": "^1.0.2",
     "react": "^16.7.0",
     "react-circular-progressbar": "^1.0.0",
     "react-dom": "^16.7.0",

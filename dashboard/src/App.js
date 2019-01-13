@@ -15,7 +15,7 @@ const initalizeJob = (they) => {
   //'http://localhost:3000/initialize?jobName=OneHundredThousand&transactions=100000'
   axios({
       method: 'get',
-      url: 'http://localhost:3001/initialize?jobName=OneHundredThousand&transactions=100000&consumers=44',
+      url: `http://localhost:3001/initialize?jobName=OneHundredThousand&transactions=${they.state.numberOfObjects}&consumers=44`,
     })
     .then(function (response) {
       // handle success
@@ -45,7 +45,7 @@ class App extends Component {
       completedCount:0,
       duration:0,
       numberOfConsumers:10,
-      numberOfObjects:100000
+      numberOfObjects:250000
     };
 
     this.handleWorkerChange = this.handleWorkerChange.bind(this);
@@ -136,7 +136,7 @@ class App extends Component {
                 </div>
                 <br/>
                 <br/>
-                <div>Object Target: 100000</div>
+                <div>{`Object Target: ${this.state.numberOfObjects}`}</div>
                 <div>{`Completed Count: ${this.state.completedCount}`}</div>
                 <div>{`Duration in Seconds: ${this.state.duration}`}</div>
               </div>

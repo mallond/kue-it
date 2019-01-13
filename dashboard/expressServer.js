@@ -6,6 +6,7 @@ const Redis = require('redis');
 const app = express();
 app.use(cors());
 const Worker = require('./redisWorker');
+const loadList = require('./loadList');
 
 
 const client = Redis.createClient();
@@ -91,6 +92,7 @@ app.get('/initialize', (req, res) => {
   //loadList();
 
   console.log(`Initialize JobStack Count:${jobStack.length}`)
+  loadList(jobDescription.transactionsRequested);
 
   res.send(`Initialize Job: ${jobDescription.jobName} Transactions: ${jobDescription.transactionsRequested } Consumers: ${jobDescription.consumerCount}`);
 });

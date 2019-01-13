@@ -99,7 +99,7 @@ app.get('/initialize', (req, res) => {
 
 // Compact jobStack
 setInterval(() => {
-  process.stdout.write('\033c');
+
   const used = process.memoryUsage();
   //for (let key in used) {
   //   console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);

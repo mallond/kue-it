@@ -1,0 +1,21 @@
+{
+    "apps": [
+      {
+        "name": "instance 1",
+        "script": "./expressServer.js",
+        "args": [3001]
+      },
+      {
+        "name": "instance 2",
+        "script": "./expressServer.js",
+        "args": [3002]
+      },
+      {
+        "name": "instance 3",
+        "script": "./expressServer.js",
+        "args": [3003]
+      }
+
+    ]
+  }
+  

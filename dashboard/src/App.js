@@ -15,7 +15,7 @@ const initalizeJob = (they) => {
   //'http://localhost:3000/initialize?jobName=OneHundredThousand&transactions=100000'
   axios({
       method: 'get',
-      url: `http://localhost:3001/initialize?jobName=OneHundredThousand&transactions=${they.state.numberOfObjects}&consumers=44`,
+      url: `http://localhost:3001/initialize?jobName=OneHundredThousand&transactions=${they.state.numberOfObjects}&consumers=${they.state.numberOfConsumers}`,
     })
     .then(function (response) {
       // handle success
@@ -44,7 +44,7 @@ class App extends Component {
       targetCount:0,
       completedCount:0,
       duration:0,
-      numberOfConsumers:10,
+      numberOfConsumers:2,
       numberOfObjects:100000
     };
 

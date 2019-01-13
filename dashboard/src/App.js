@@ -70,7 +70,11 @@ class App extends Component {
           })
           .then(function (response) {
             const completedCount = response.data.transactionsCompleted;
-            const percentValue = response.data.transactionsCompleted / response.data.transactionsRequested * 100;
+            let percentValue =0;
+            // Calculate % done only if the timer started ie duration
+            if (they.state.duration!==0) {
+              percentValue = response.data.transactionsCompleted / response.data.transactionsRequested * 100;
+            }
             // Caluclate Duration
             if (they.state.completedCount>0 && they.state.completedCount !== response.data.transactionsRequested) {
               const now = new Date();

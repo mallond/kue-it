@@ -149,6 +149,7 @@ class App extends Component {
                   <span className="row">Number of Workers:</span> <span ><input type="text" align="right" value={this.state.numberOfConsumers} size="7" onChange={this.handleWorkerChange}/></span>
                   <span><button onClick={this.handleRunClick}>Run</button></span>
                 </div>
+                <br/>
                 <div>{`Object Target: ${this.state.numberOfObjects}`}</div>
                 <div>{`Completed Count: ${this.state.completedCount}`}</div>
                 <div>{`Duration in Seconds: ${this.state.duration}`}</div>
@@ -160,7 +161,7 @@ class App extends Component {
     const values = [];
     for (cnt; cnt<this.state.numberOfConsumers; cnt++) {
      values.push(aPixal(cnt))
-     if (cnt===431) {
+     if (cnt===331) {
        break;
      }
     }
